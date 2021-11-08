@@ -1,0 +1,27 @@
+<?php
+
+class tesatu
+{
+  private $dbh;
+  private $data;
+  private $stmt;
+  private $dsn = 'mysql:host=localhost;dbname=company_list';
+ 
+  
+  if (!session_id()) session_start();
+
+
+  $option = [
+    PDO::ATTR_PERSISTENT => true,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+  ];
+
+
+  $this->dbh = new PDO($this->dsn, 'root', '');
+
+  $this->stmt = $this->dbh->prepare('SELECT * FROM companydetails');
+
+  $this->stmt->execute();
+  $this->data = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+}

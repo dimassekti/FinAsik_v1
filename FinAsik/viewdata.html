@@ -1,0 +1,151 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/transition.css">
+
+
+  <title>FinAsik</title>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="navbar">
+      <div class="navbar-home">
+        <a class="home-link" href="index.html" style="color: rgb(88, 88, 88);">
+          FinAsik
+        </a>
+      </div>
+
+
+    </div>
+
+    <div class="navbar-1">
+      <div class="navbar-viewdata">
+        <a class="viewdata-link current-page" href="viewdata.html" style="color: rgb(88, 88, 88);">
+          FinCom
+        </a>
+      </div>
+
+      <div class="navbar-news">
+        <a class="news-link" href="news.html" style="color: rgb(88, 88, 88);">
+
+          FinNews
+
+        </a>
+      </div>
+
+      <div class="navbar-ask">
+        <a class="ask-link" href="ask.html" style="color: rgb(88, 88, 88);">
+
+          FinAsk
+
+        </a>
+      </div>
+
+      <div class="navbar-rating">
+        <a class="rating-link" href="shop.html" style="color: rgb(88, 88, 88);">
+
+          FinShop
+
+        </a>
+      </div>
+
+      <div class="navbar-aboutus">
+        <a class="aboutus-link" href="aboutus.html" style="color: rgb(88, 88, 88);">
+
+          About Us
+
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div>
+      <?php
+      $dbh;
+      $data;
+      $stmt;
+      $dsn = 'mysql:host=localhost;dbname=company_list';
+
+
+      if (!session_id()) session_start();
+
+
+      $option = [
+        PDO::ATTR_PERSISTENT => true,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+      ];
+
+
+      $dbh = new PDO($dsn, 'root', '');
+
+      $stmt = $dbh->prepare('SELECT * FROM companydetails');
+
+      $stmt->execute();
+      $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+      echo "<div style='display:flex;'>";
+      foreach ($data as $imgco) {
+        echo "<div style='display:block; margin-left:2vh; margin-right:2vh;'>";
+        echo "<img style='width:200px; margin:1vh;' src='http://localhost/FinAsik/Image/" . $imgco['Gambar Perusahaan'] . "' alt=''>";
+        echo "<div style='width: 200px; margin:0;'> ";
+        echo $imgco['Nama Platform'];
+        echo "<br><br>";
+        echo $imgco['Nama Perusahaan'];
+        echo "<br><br>";
+        echo $imgco['Surat OJK'];
+        echo "<br><br>";
+        echo $imgco['Tanggal'];
+        echo "<br><br>";
+        echo $imgco['Websites'];
+        echo "<br><br>";
+
+        echo "</div>";
+        echo "</div>";
+      }
+      echo "</div>";
+      ?>
+
+
+    </div>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+
+  <div class="footer">
+    <div class="left-footer" style="color: rgb(88, 88, 88);">
+      <div>
+        <a style="text-decoration: none; font-size: 22px;" href="rating.html">Fitur Beta FinRate telah hadir, Coba Sekarang..</a>
+      </div>
+    </div>
+    <div class="right-footer">
+      <div class="followus-txt">
+        Follow Us
+      </div>
+      <div>
+        <a target="_blank" ref="https://www.facebook.com/">
+          <img src="Assets/1024px-Facebook_f_logo_(2019).svg.png" alt="" class="fb-img" width="80px">
+        </a>
+      </div>
+      <div>
+        <a target="_blank" href="https://www.instagram.com/">
+          <img src="Assets/2048px-Instagram_icon.png" alt="" class="ig-img" width="80px">
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+
+</body>
+
+</html>
